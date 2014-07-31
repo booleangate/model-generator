@@ -13,7 +13,7 @@
 				<h1>Model Generator</h1>
 			</header>
 		
-			<p class="lead">Quickly and easily generate a class definition with getters and setters just by providing property names.</p>
+			<p class="lead">Easily generate a class definition with getters and setters just by providing property names.</p>
 			
 			<form id="mg">
 				<div class="panel panel-default">
@@ -49,16 +49,16 @@
 							</div>
 							
 							<div class="col-md-2">
-								<label for="inp-indentStyle">Opening braces</label>
-								<select class="form-control" name="indentStyle" id="inp-indentStyle">
-									<option value="same">Same line</option>
-									<option value="new">New line</option>
+								<label for="inp-openingBraces">Opening braces</label>
+								<select class="form-control" name="openingBraces" id="inp-openingBraces">
+									<option value="sameline">Same line</option>
+									<option value="newline">New line</option>
 								</select>
 							</div>
 							
 							<div class="col-md-2">
 								<label for="inp-case">Case</label>
-								<select class="form-control" name="case" id="inp-case">
+								<select class="form-control" name="propertyCase" id="inp-case">
 									<option value="camel">Camel case</option>
 									<option value="snake">Snake case</option>
 								</select>
@@ -94,15 +94,17 @@
 				
 				<input type="submit" class="center-block btn btn-primary btn-lg" value="Generate model">
 			</form>
+			
+			<pre class="hidden"></pre>
 		</div>
 
 		<script type="text/html" id="tmpl-property">
 			<div class="property row">
 				<div class="col-md-3">
-					<input type="text" class="form-control" placeholder="Name" name="name[]">
+					<input type="text" class="form-control" placeholder="Name" name="propertyName[]">
 				</div>
 				<div class="col-md-2">
-					<select class="form-control" name="methods[]">
+					<select class="form-control" name="propertyMethod[]">
 						<option value="all">Get and set</option>
 						<option value="get">Get only</option>
 						<option value="set">Set only</option>
@@ -110,7 +112,7 @@
 				</div>
 				<div class="col-md-2 checkbox">
 					<label>
-						<input type="checkbox" name="isBoolean[]" value="1">
+						<input type="checkbox" name="propertyIsBoolean[]" value="1">
 						Is boolean
 					</label>
 				</div>
@@ -122,6 +124,7 @@
 		<script src="js/models/Property.js"></script>
 		<script src="js/models/Config.js"></script>
 		<script src="js/models/Formatter.js"></script>
+		<script src="js/generators/PhpGenerator.js"></script>
 		<script src="js/main.js"></script>
 	</body>
 </html>

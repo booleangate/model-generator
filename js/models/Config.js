@@ -1,9 +1,12 @@
-function Config(language, defaultScope, indent, openingBraces, identifierCase) {
-	this.language = language;
-	this.defaultScope = defaultScore;
-	this.indent = indent;
+/**
+ * @author johnsonj <me@justinjohnson.org>
+ */
+function Config(className, defaultScope, indent, openingBraces, propertyCase) {
+	this.className = className;
+	this.defaultScope = defaultScope;
+	this.indent = indent == "tabs" ? "\t" : "    ";
 	this.openingBraces = openingBraces;
-	this.identifierCase = identifierCase;
+	this.propertyCase = propertyCase;
 	this.properties = [];
 }
 
