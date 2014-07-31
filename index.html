@@ -1,0 +1,127 @@
+<html>
+	<head>
+		<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+		<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+		<link rel="stylesheet" href="css/main.css">
+		
+		<script src="//code.jquery.com/jquery-2.1.1.min.js"></script>
+		<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+	</head>
+	<body>
+		<div class="container">
+			<header>
+				<h1>Model Generator</h1>
+			</header>
+		
+			<p class="lead">Quickly and easily generate a class definition with getters and setters just by providing property names.</p>
+			
+			<form id="mg">
+				<div class="panel panel-default">
+					<div class="panel-heading">Basics</div>
+  					<div class="panel-body">
+  						<div class="form-group ">
+							<div class="col-md-2">
+								<label for="inp-classname">Class name</label>
+								<input type="text" class="form-control" name="className" id="inp-classname">
+							</div>
+							<div class="col-md-2">
+								<label for="inp-language">Language</label>
+								<select class="form-control" name="language" id="inp-language">
+									<option value="php">PHP</option>
+								</select>
+							</div>
+							
+							<div class="col-md-2">
+								<label for="inp-scope">Property scope</label>
+								<select class="form-control" name="scope" id="inp-scope">
+									<option value="private">Private</option>
+									<option value="protected">Protected</option>
+									<option value="public">Public</option>
+								</select>
+							</div>
+							
+							<div class="col-md-2">
+								<label for="inp-indentCharacter">Indent character</label>
+								<select class="form-control" name="indentCharacter" id="inp-indentCharacter">
+									<option value="tabs">Tabs</option>
+									<option value="spaces">Spaces</option>
+								</select>
+							</div>
+							
+							<div class="col-md-2">
+								<label for="inp-indentStyle">Opening braces</label>
+								<select class="form-control" name="indentStyle" id="inp-indentStyle">
+									<option value="same">Same line</option>
+									<option value="new">New line</option>
+								</select>
+							</div>
+							
+							<div class="col-md-2">
+								<label for="inp-case">Case</label>
+								<select class="form-control" name="case" id="inp-case">
+									<option value="camel">Camel case</option>
+									<option value="snake">Snake case</option>
+								</select>
+							</div>
+						</div>
+  					</div>
+  				</div>
+
+				<!-- <div class="panel panel-default">
+					<div class="panel-heading">Constructor</div>
+  					<div class="panel-body">
+  						Coming soon
+  					</div>
+  				</div>
+
+				<div class="panel panel-default">
+					<div class="panel-heading">Other methods</div>
+  					<div class="panel-body">
+  						Coming soon
+  					</div>
+  				</div> -->
+				
+				<div class="panel panel-default">
+					<div class="panel-heading">Properties</div>
+  					<div class="panel-body">
+  						<div id="property-container">
+							
+						</div>
+						
+						<button type="button" class="btn btn-default btn-sm" id="btn-add-property"><span class="glyphicon glyphicon-plus"></span> Add property</button>
+					</div>
+				</div>
+				
+				<input type="submit" class="center-block btn btn-primary btn-lg" value="Generate model">
+			</form>
+		</div>
+
+		<script type="text/html" id="tmpl-property">
+			<div class="property row">
+				<div class="col-md-3">
+					<input type="text" class="form-control" placeholder="Name" name="name[]">
+				</div>
+				<div class="col-md-2">
+					<select class="form-control" name="methods[]">
+						<option value="all">Get and set</option>
+						<option value="get">Get only</option>
+						<option value="set">Set only</option>
+					</select>
+				</div>
+				<div class="col-md-2 checkbox">
+					<label>
+						<input type="checkbox" name="isBoolean[]" value="1">
+						Is boolean
+					</label>
+				</div>
+				<div class="col-md-1">
+					<button type="button" class="btn btn-default btn-sm btn-delete"><span class="glyphicon glyphicon-trash"></span> Remove</button>
+				</div>
+			</div>
+		</script>		
+		<script src="js/models/Property.js"></script>
+		<script src="js/models/Config.js"></script>
+		<script src="js/models/Formatter.js"></script>
+		<script src="js/main.js"></script>
+	</body>
+</html>

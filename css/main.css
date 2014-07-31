@@ -1,0 +1,14 @@
+header {
+	border-bottom: 1px solid #ccc;
+	margin-bottom: 30px;
+}
+
+label {
+	cursor: pointer;
+}
+
+#mg .btn-primary {
+	min-width: 250px;
+	width: 40%;
+	max-width: 500px;
+}
