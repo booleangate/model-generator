@@ -9,7 +9,3 @@ function Config(className, defaultScope, indent, openingBraces, propertyCase) {
 	this.propertyCase = propertyCase;
 	this.properties = [];
 }
-
-Config.prototype.addProperty = function(property) {
-	this.properties.push(property);
-};

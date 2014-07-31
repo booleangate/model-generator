@@ -14,6 +14,11 @@
 		$property.find("input[type='text']").focus();
 	}
 	
+	function removeProperty(childNode) {
+		--properties;
+		$(childNode).closest(".property").remove();
+	}
+	
 	function getProperty(form, arrayName) {
 		return properties == 1 ? [form.elements[arrayName]] : form.elements[arrayName];
 	}
@@ -28,18 +33,12 @@
 	
 	// Removing properties
 	$propertyContainer.on("click", ".btn-delete", function() {
-		--properties;
-		$(this).closest(".property").remove();
+		removeProperty(this);
 	});
 	
 	// Form submission
 	$("#mg").submit(function(e) {
 		e.preventDefault();
-		
-		if ( properties == 0 ) {
-			alert("You must add at least 1 property.");
-			return;
-		}
 		
 		// Setup class config
 		var config = new Config(
@@ -53,17 +52,30 @@
 			propertyMethods = getProperty(this, "propertyMethod[]"),
 			propertyIsBoolean = getProperty(this, "propertyIsBoolean[]");
 
-		// Setup properties
-		for (var i = 0; i < properties; ++i) {
-			config.addProperty(new Property(
+		// Setup properties (process backward so we can delete properties with empty names)
+		for (var i = properties - 1; i >= 0 ; --i) {
+			// Skip empty property name
+			if (propertyNames[i].value.trim().length == 0) {
+				removeProperty(propertyNames[i]);
+				continue;
+			}
+			
+			config.properties.unshift(new Property(
 				propertyNames[i].value, 
 				propertyMethods[i].value, 
 				propertyIsBoolean[i].checked
 			));
 		}
 		
+		if (config.properties.length == 0) {
+			alert("You must add at least 1 property.");
+			return;
+		}
+		
 		$("pre").removeClass("hidden").text(getGenerator(this.language.value, config).generate());
 	});
 	
-	addProperty();	
+	// Initialize the properties section
+	addProperty();
+	$propertyContainer.sortable();
 }());
