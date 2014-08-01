@@ -17,6 +17,11 @@
 	function removeProperty(childNode) {
 		--propertyCount;
 		$(childNode).closest(".property").remove();
+		
+		// If there are no more properties left, add an empty one.
+		if (propertyCount == 0) {
+			addProperty();
+		}
 	}
 	
 	function getProperty(form, arrayName) {
