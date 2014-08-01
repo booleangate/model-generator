@@ -58,6 +58,16 @@ Formatter = (function() {
 		});
 	};
 	
+	
+	Formatter.prototype.methodName = function(prefix, name) {
+		// For boolean properties, do not prepend the "is" prefix if the property name starts with "is."
+		if (prefix != "is" || name.substr(0, 3) != "is ") {
+			name = prefix + " " + name;
+		}
+		
+		return this.propertyName(name);
+	};
+	
 	Formatter.prototype.toString = function() {
 		return this.content;
 	};

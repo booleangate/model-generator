@@ -67,7 +67,7 @@ PhpGenerator = (function() {
 			$.each(prefixes, function(j, prefix) {
 				var identifier = f.propertyName(property.name);
 				
-				f.openBlock("public function " + f.propertyName(prefix + " " + property.name) + getMethodArguments(prefix, identifier))
+				f.openBlock("public function " + f.methodName(prefix, property.name) + getMethodArguments(prefix, identifier))
 					.writeln(getMethodBody(prefix, identifier))
 					.closeBlock()
 					
