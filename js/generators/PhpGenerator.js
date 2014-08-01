@@ -34,7 +34,7 @@ PhpGenerator = (function() {
 			return "$this->" + identifier + " = $" + identifier + ";";
 		}
 		
-		return "return $this->" + identifier + ":";
+		return "return $this->" + identifier + ";";
 	}
 	
 	function PhpGenerator(config) {
@@ -62,14 +62,16 @@ PhpGenerator = (function() {
 			
 		// Write the getters and setters
 		$.each(this.config.properties, function(i, property) {
-			$.each(getMethodPrefixes(property), function(j, prefix) {
+			var prefixes = getMethodPrefixes(property);
+			
+			$.each(prefixes, function(j, prefix) {
 				var identifier = f.propertyName(property.name);
 				
 				f.openBlock("public function " + f.propertyName(prefix + " " + property.name) + getMethodArguments(prefix, identifier))
 					.writeln(getMethodBody(prefix, identifier))
 					.closeBlock()
 					
-				if (i + 1 != c.properties.length) {
+				if (i + 1 != c.properties.length || j + 1 != prefixes.length) {
 					f.writeln();
 				}
 			});
