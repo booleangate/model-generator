@@ -50,10 +50,11 @@
 			),
 			propertyNames = getProperty(this, "propertyName[]"),
 			propertyMethods = getProperty(this, "propertyMethod[]"),
-			propertyIsBoolean = getProperty(this, "propertyIsBoolean[]");
+			propertyIsBoolean = getProperty(this, "propertyIsBoolean[]"),
+			i;
 
 		// Setup properties (process backward so we can delete properties with empty names)
-		for (var i = properties - 1; i >= 0 ; --i) {
+		for (i = properties - 1; i >= 0 ; --i) {
 			// Skip empty property name
 			if (propertyNames[i].value.trim().length == 0) {
 				removeProperty(propertyNames[i]);
@@ -67,8 +68,11 @@
 			));
 		}
 		
+		// We've deleted all the invald properties. Add back one property field and show an error.
 		if (config.properties.length == 0) {
+			addProperty();
 			alert("You must add at least 1 property.");
+			
 			return;
 		}
 		
