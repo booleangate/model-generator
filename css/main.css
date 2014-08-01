@@ -12,3 +12,8 @@ label {
 	width: 40%;
 	max-width: 500px;
 }
+
+#btn-add-property {
+	float: right;
+	margin-top: -5px;
+}
