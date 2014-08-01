@@ -4,28 +4,36 @@
 (function() {
 	var $propertyContainer = $("#property-container"),
 		propertyTemplate = $("#tmpl-property").html(),
-		properties = 0;
+		propertyCount = 0;
 		
 	function addProperty() {
 		var $property = $(propertyTemplate);
 		
-		++properties;
+		++propertyCount;
 		$propertyContainer.append($property);
 		$property.find("input[type='text']").focus();
 	}
 	
 	function removeProperty(childNode) {
-		--properties;
+		--propertyCount;
 		$(childNode).closest(".property").remove();
 	}
 	
 	function getProperty(form, arrayName) {
-		return properties == 1 ? [form.elements[arrayName]] : form.elements[arrayName];
+		return propertyCount == 1 ? [form.elements[arrayName]] : form.elements[arrayName];
 	}
 	
 	function getGenerator(language, config) {
 		// TODO: add more language generators
 		return new PhpGenerator(config);
+	}
+	
+	function showError(message) {
+		$("#error-container").removeClass("hidden").html(message);
+	}
+	
+	function hideError() {
+		$("#error-container").addClass("hidden");
 	}
 	
 	// Adding properties
@@ -54,7 +62,7 @@
 			i;
 
 		// Setup properties (process backward so we can delete properties with empty names)
-		for (i = properties - 1; i >= 0 ; --i) {
+		for (i = propertyCount - 1; i >= 0 ; --i) {
 			// Skip empty property name
 			if (propertyNames[i].value.trim().length == 0) {
 				removeProperty(propertyNames[i]);
@@ -69,12 +77,14 @@
 		}
 		
 		// We've deleted all the invald properties. Add back one property field and show an error.
-		if (config.properties.length == 0) {
+		if (propertyCount == 0) {
 			addProperty();
-			alert("You must add at least 1 property.");
+			showError("You must add at least 1 property.");
 			
-			return;
+			return false;
 		}
+		
+		hideError();
 		
 		$("pre").removeClass("hidden").text(getGenerator(this.language.value, config).generate());
 	});
