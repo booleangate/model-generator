@@ -5,11 +5,11 @@ PhpGenerator = (function() {
 	function getMethodPrefixes(property) {
 		var prefixes = [];
 		
-		if (property.useSet) {
+		if (property.useSet()) {
 			prefixes.push("set");
 		}
 		
-		if (property.useGet) {
+		if (property.useGet()) {
 			if (property.isBoolean) {
 				prefixes.push("is");
 			}
@@ -54,14 +54,14 @@ PhpGenerator = (function() {
 			.openBlock("class " + c.className);
 			
 		// Declare the properties	
-		$.each(this.config.properties, function(i, property) {
+		$.each(c.properties, function(i, property) {
 			f.writeln(c.defaultScope + " $" + f.propertyName(property.name) + ";");
 		});
 		
 		f.writeln();
 			
 		// Write the getters and setters
-		$.each(this.config.properties, function(i, property) {
+		$.each(c.properties, function(i, property) {
 			var prefixes = getMethodPrefixes(property);
 			
 			$.each(prefixes, function(j, prefix) {

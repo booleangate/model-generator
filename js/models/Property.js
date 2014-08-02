@@ -19,9 +19,20 @@ Property = (function() {
 	
 	function Property(name, methods, isBoolean) {
 		this.name = prepareName(name);
-		this.useSet = methods == "all" || methods == "set";
-		this.useGet = methods == "all" || methods == "get";
+		this.methods = methods
 		this.isBoolean = isBoolean == "1";
+	}
+	
+	Property.copy = function(object) {
+		return new Property(object.name, object.methods, object.isBoolean);
+	}
+	
+	Property.prototype.useSet = function() {
+		return this.methods == "all" || this.methods == "set";
+	}
+	
+	Property.prototype.useGet = function() {
+		return this.methods == "all" || this.methods == "get";
 	}
 
 	return Property;

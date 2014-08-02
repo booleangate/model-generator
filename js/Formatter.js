@@ -6,7 +6,7 @@ Formatter = (function() {
 		var i, indent = "";
 		
 		for (i = 0; i < formatter.indent; ++i ) {
-			indent += formatter.config.indent;
+			indent += formatter.config.getIndentString();
 		}
 		
 		return indent;	

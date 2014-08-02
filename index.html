@@ -35,7 +35,7 @@
 							
 							<div class="col-md-2">
 								<label for="inp-scope">Property scope</label>
-								<select class="form-control" name="scope" id="inp-scope">
+								<select class="form-control" name="defaultScope" id="inp-scope">
 									<option value="private">Private</option>
 									<option value="protected">Protected</option>
 									<option value="public">Public</option>
@@ -43,8 +43,8 @@
 							</div>
 							
 							<div class="col-md-2">
-								<label for="inp-indentCharacter">Indent character</label>
-								<select class="form-control" name="indentCharacter" id="inp-indentCharacter">
+								<label for="inp-indentStyle">Indent style</label>
+								<select class="form-control" name="indentStyle" id="inp-indentStyle">
 									<option value="tabs">Tabs</option>
 									<option value="spaces">Spaces</option>
 								</select>
@@ -110,7 +110,7 @@
 					<input type="text" class="form-control" placeholder="Name" name="propertyName[]">
 				</div>
 				<div class="col-md-2">
-					<select class="form-control" name="propertyMethod[]">
+					<select class="form-control" name="propertyMethods[]">
 						<option value="all">Get and set</option>
 						<option value="get">Get only</option>
 						<option value="set">Set only</option>
@@ -127,6 +127,7 @@
 				</div>
 			</div>
 		</script>		
+		<script src="js/jquery/plugins/jquery.deserialize.js"></script>
 		<script src="js/models/Property.js"></script>
 		<script src="js/models/Config.js"></script>
 		<script src="js/Formatter.js"></script>
