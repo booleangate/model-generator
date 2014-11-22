@@ -8,3 +8,5 @@ This is a simple web app that accepts a class name and a list of property names 
 and creates a model object with getters and setters for each property.
 
 This is similar to and inspired by Eclipse's builtin getter/setter generation for Java classes.
+
+An example is available here: http://justinjohnson.org/github/model-generator/
