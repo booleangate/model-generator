@@ -92,8 +92,13 @@
 	}
 	
 	function getGenerator(config) {
-		// TODO: add more language generators
-		return new PhpGenerator(config);
+		switch (config.language) {
+			case "php":
+				return new PhpGenerator(config);
+				
+			case "js":
+				return new JavaScriptGenerator(config);
+		}
 	}
 	
 	function generateModel(config) {

@@ -17,3 +17,7 @@ label {
 	float: right;
 	margin-top: -5px;
 }
+
+pre {
+	margin-top: 20px;
+}

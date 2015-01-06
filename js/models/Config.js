@@ -20,8 +20,8 @@ Config.copy = function(object) {
 	}
 	
 	return config;
-}
+};
 
 Config.prototype.getIndentString = function() {
 	return this.indentStyle == "tabs" ? "\t" : "    ";
-}
+};
