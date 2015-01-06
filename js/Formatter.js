@@ -18,12 +18,14 @@ Formatter = (function() {
 		this.indent = 0;
 	}
 	
-	Formatter.prototype.openBlock = function(content) {
+	Formatter.prototype.openBlock = function(content, blockOpen) {
+		blockOpen = blockOpen || "{";
+		
 		if ( this.config.openingBraces == "newline" ) {
 			this.writeln(content);
-			this.writeln("{");
+			this.writeln(blockOpen);
 		} else {
-			this.writeln(content + " {");
+			this.writeln(content + " " + blockOpen);
 		}
 		
 		++this.indent;
@@ -31,9 +33,9 @@ Formatter = (function() {
 		return this;
 	};
 	
-	Formatter.prototype.closeBlock = function() {
+	Formatter.prototype.closeBlock = function(blockClose) {
 		--this.indent;
-		this.writeln("}");
+		this.writeln(blockClose || "}");
 		
 		return this;
 	};

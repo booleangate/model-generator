@@ -69,7 +69,7 @@ JavaScriptGenerator = (function() {
 				
 				f.openBlock(c.className + ".prototype." + f.methodName(prefix, property.name) + " = function" + getMethodArguments(prefix, identifier))
 					.writeln(getMethodBody(prefix, identifier))
-					.closeBlock();
+					.closeBlock("};");
 					
 				if (i + 1 != c.properties.length || j + 1 != prefixes.length) {
 					f.writeln();
